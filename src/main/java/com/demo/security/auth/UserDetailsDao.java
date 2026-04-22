@@ -1,5 +1,7 @@
 package com.demo.security.auth;
 
+import java.util.Optional;
+
 public interface UserDetailsDao {
-    CustomUser getUserByUsername(String username);
+    Optional<CustomUser> getUserByUsername(String username);
 }
