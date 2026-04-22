@@ -1,11 +1,13 @@
 package com.demo.security.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static com.demo.security.config.ApplicationUserRole.*;
 
@@ -19,11 +21,10 @@ public class FakeUserDetailsService implements UserDetailsDao {
     }
 
     @Override
-    public CustomUser getUserByUsername(String username) {
+    public Optional<CustomUser> getUserByUsername(String username) {
         return getListCustomUsers().stream()
                 .filter(customUser -> customUser.getUsername().equals(username))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+                .findFirst();
     }
 
     private List<CustomUser> getListCustomUsers() {
