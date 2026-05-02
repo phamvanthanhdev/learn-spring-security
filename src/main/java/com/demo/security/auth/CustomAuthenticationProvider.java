@@ -30,7 +30,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         }
 
         return new UsernamePasswordAuthenticationToken(username, password
-                ,STUDENT.getAuthorities());
+                ,user.getAuthorities());
     }
 
     @Override
